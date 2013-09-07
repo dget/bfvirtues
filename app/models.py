@@ -3,13 +3,13 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Person(models.Model):
-  user = models.OneToOneField(User, unique=True, related_name='person')
+# class Person(models.Model):
+#   user = models.OneToOneField(User, unique=True, related_name='person')
 
 class Day(models.Model):
 
   # metadata
-  person = models.ForeignKey(Person, related_name='days')
+  user = models.ForeignKey(User, related_name='days')
   date = models.DateField()
 
   # virtues
