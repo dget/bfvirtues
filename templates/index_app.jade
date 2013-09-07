@@ -1,15 +1,29 @@
 extends base
 
 block content
-  .page-header
-    h1.text-center Temperance
-  p.lead.text-center.
-    Eat not to dullness; drink not to elevation.
-  //- p This is less important information.
+  br
+  br
+  br
   table.table.table-bordered
     thead
       tr
-        th
+        td(colspan=8)
+          h1.text-center Temperance
+          hr
+          p.lead.text-center
+            em Eat not to dullness; drink not to elevation.
+      tr
+        th.text-center(style='padding:0')
+          a.btn(
+            href='#prev'
+            style='padding:0; margin-top: -20px;')
+            i.glyphicon.glyphicon-chevron-left
+          | &nbsp;
+          a.btn(
+            href='#next'
+            style='padding:0; margin-top: -20px;')
+            i.glyphicon.glyphicon-chevron-right
+
         for weekday in weekdays
           th.text-center {{ weekday.letter }}
     tbody
