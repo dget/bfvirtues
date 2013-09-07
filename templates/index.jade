@@ -1,4 +1,12 @@
-block content
-  h1 Hello World
 
+block styles
+  | {{ block.super }}
+
+
+block content
+  .page-header
+    h1 BF Virtues
+  p.lead.
+    This is some information and stuff
+  p This is less important information.
   a(href='/login/twitter/') Log in with Twitter
