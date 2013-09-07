@@ -35,13 +35,24 @@ def logged_in(request):
 
 
 def get_user_days(user):
+  # Get all the days between today and 10 days before
+  # user signed up
   days = user.days.all()
 
   if not days:
-    today = datetime.date.today()
-    # http://stackoverflow.com/a/1622052/1048433
-    most_recent_sunday = today - datetime.timedelta(days=today.weekday() - 1)
-    for date in rrule(DAILY, dtstart=most_recent_sunday, until=today):
-      pass
+    used_dates = []
+  used_dates = [day.date for day in days]
+
+  today = datetime.date.today()
+
+  # set first date checked
+  currently_checked_date = user.date_joined.date() - datetime.timedelta(days=10)
+
+  while currently_checked_date < today:
+    if currently_checked_date not in used_dates:
+      day = Day(user=user, date=currently_checked_date)
+      day.save()
+
+    currently_checked_date = currently_checked_date + datetime.timedelta(days=1)
 
   return days
