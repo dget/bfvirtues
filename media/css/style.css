@@ -16,6 +16,9 @@ span,
 a {
   font-family: 'EB Garamond', serif;
 }
+em {
+  font-family: 'Libre Baskerville', 'EB Garamond', serif;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html,
