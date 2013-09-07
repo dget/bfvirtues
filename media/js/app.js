@@ -7,7 +7,8 @@
   $('.popper').popover();
 
   $('.checkbox').click(function() {
-    return $(this).addClass('checked');
+    $(this).addClass('checked');
+    return $(this).html('•');
   });
 
 }).call(this);

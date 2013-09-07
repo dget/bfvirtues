@@ -6,3 +6,4 @@ $('.popper').popover()
 
 $('.checkbox').click ->
   $(this).addClass('checked')
+  $(this).html('•')
