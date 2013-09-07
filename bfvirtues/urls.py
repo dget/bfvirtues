@@ -9,6 +9,8 @@ from app import views
 
 urlpatterns = patterns('',
 
+    url(r'', include('social_auth.urls')),
+
     # (r'^admin/', include(admin.site.urls)),
     (r'media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 

@@ -1,3 +1,6 @@
 django==1.5
-South==latest
-requests==latest
+South
+requests
+django-social-auth
+pyjade
+python-dateutil
