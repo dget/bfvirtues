@@ -11,7 +11,10 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from app.models import Day
 
-def index(request):
+def home(request):
+  return render_to_response('index_home.jade', {})
+
+def app(request):
   if request.user.is_authenticated():
     user = request.user
     print 'user is logged in', user.username
@@ -92,8 +95,12 @@ def index(request):
       'current_virtue': current_virtue,
     }
     return render_to_response('index_app.jade', context)
+
+def index(request):
+  if request.user.is_authenticated():
+    return app(request)
   else:
-    return render_to_response('index.jade', {})
+    return home(request)
 
 
 def logged_in(request):

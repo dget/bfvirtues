@@ -4,6 +4,33 @@ $(document).ready ->
   $('td').css('cursor','pointer')
   $('th').css('cursor','pointer')
 
+  # also maybe fix ios click?  http://stackoverflow.com/a/3714129/1048433
+  touchHandler = (event) ->
+    touches = event.changedTouches
+    first = touches[0]
+    type = ""
+    switch event.type
+      when "touchstart"
+        type = "mousedown"
+      when "touchmove"
+        type = "mousemove"
+      when "touchend"
+        type = "mouseup"
+      else
+        return
+
+    #initMouseEvent(type, canBubble, cancelable, view, clickCount,
+    #           screenX, screenY, clientX, clientY, ctrlKey,
+    #           altKey, shiftKey, metaKey, button, relatedTarget);
+    simulatedEvent = document.createEvent("MouseEvent")
+    simulatedEvent.initMouseEvent type, true, true, window, 1, first.screenX, first.screenY, first.clientX, first.clientY, false, false, false, false, 0, null #left
+    first.target.dispatchEvent simulatedEvent
+    event.preventDefault()
+  document.addEventListener("touchstart", touchHandler, true)
+  document.addEventListener("touchmove", touchHandler, true)
+  document.addEventListener("touchend", touchHandler, true)
+  document.addEventListener("touchcancel", touchHandler, true)
+
   window.week_idx = window.weeks.length - 1
   displayCurrentWeek()
 
@@ -13,7 +40,7 @@ $(document).ready ->
   $('.popper').popover()
 
   $('.checkbox').click ->
-    e.preventDefault() # maybe fix ios click?  http://stackoverflow.com/a/15096054/1048433
+    # e.preventDefault() # maybe fix ios click?  http://stackoverflow.com/a/15096054/1048433
 
     $(this).toggleClass('checked')
 

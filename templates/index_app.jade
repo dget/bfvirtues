@@ -3,7 +3,12 @@ extends base
 block content
   div
     .pull-right.text-muted(style='padding: 20px;')
-      {{ user }}
+      {{ user }} |
+      a(href='#about_modal'
+        data-toggle='modal') Passage
+      |  |
+      a(href='#virtues_modal'
+        data-toggle='modal') Virtues
 
   table.table.table-bordered
     thead
@@ -27,7 +32,6 @@ block content
 
         for weekday in weekdays
           th.text-center(
-            title='{{  }}'
             ) {{ weekday.letter }}
     tbody
       for virtue in virtues

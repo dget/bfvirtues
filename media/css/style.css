@@ -23,6 +23,7 @@ em {
   font-family: 'Libre Baskerville', 'EB Garamond', serif;
 }
 .bfrank-img-wrapper img {
+  top: 20px;
   height: 50%;
   left: 10%;
   position: absolute;

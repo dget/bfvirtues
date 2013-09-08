@@ -3,9 +3,36 @@
   var displayCurrentWeek, row_nums;
 
   $(document).ready(function() {
-    var nextWeek, prevWeek;
+    var nextWeek, prevWeek, touchHandler;
     $('td').css('cursor', 'pointer');
     $('th').css('cursor', 'pointer');
+    touchHandler = function(event) {
+      var first, simulatedEvent, touches, type;
+      touches = event.changedTouches;
+      first = touches[0];
+      type = "";
+      switch (event.type) {
+        case "touchstart":
+          type = "mousedown";
+          break;
+        case "touchmove":
+          type = "mousemove";
+          break;
+        case "touchend":
+          type = "mouseup";
+          break;
+        default:
+          return;
+      }
+      simulatedEvent = document.createEvent("MouseEvent");
+      simulatedEvent.initMouseEvent(type, true, true, window, 1, first.screenX, first.screenY, first.clientX, first.clientY, false, false, false, false, 0, null);
+      first.target.dispatchEvent(simulatedEvent);
+      return event.preventDefault();
+    };
+    document.addEventListener("touchstart", touchHandler, true);
+    document.addEventListener("touchmove", touchHandler, true);
+    document.addEventListener("touchend", touchHandler, true);
+    document.addEventListener("touchcancel", touchHandler, true);
     window.week_idx = window.weeks.length - 1;
     displayCurrentWeek();
     $('.ttip').tooltip({
@@ -14,7 +41,6 @@
     $('.popper').popover();
     $('.checkbox').click(function() {
       var current_week, day, value, virtue, week_start_date;
-      e.preventDefault();
       $(this).toggleClass('checked');
       virtue = $(this).data('virtue').toLowerCase();
       value = 1;
