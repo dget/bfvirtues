@@ -47,5 +47,7 @@ block js
   {% autoescape off %}
   script.
     weeks = {{ weeks }};
+    week_idx = -1;
+  
   {% endautoescape %}
   script(src='/media/js/app.js')

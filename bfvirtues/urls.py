@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', views.index),
     url(r'^logged-in/$', views.logged_in),
+    url(r'^update_virtue/(.*)/$', views.update_virtue)
     # url(r'^bfvirtues/', include('bfvirtues.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

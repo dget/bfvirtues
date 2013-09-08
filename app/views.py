@@ -8,6 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
 from app.models import Day
 
 def index(request):
@@ -93,6 +94,23 @@ def logged_in(request):
   print 'in logged_in with ', request
 
   return HttpResponseRedirect('/')
+
+@csrf_exempt
+def update_virtue(request, date):
+  if request.method != 'POST':
+    return HttpResponse("0")
+
+  user = request.user
+
+  virtue = request.POST['virtue']
+  value = request.POST['value']
+
+  real_date = datetime.datetime.strptime(date, "%d%m%Y").date()
+  day = Day.objects.get(user=user, date=real_date)
+
+  setattr(day, virtue, value)
+  day.save()
+  return HttpResponse("1")
 
 
 def get_user_days(user):
