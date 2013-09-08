@@ -1,3 +1,48 @@
+extends base
+
 block content
-  h1 Hello, {{ user }}
-  h2 {{ user.date_joined.date }}
+  br
+  br
+  br
+  table.table.table-bordered
+    thead
+      tr
+        td(colspan=8)
+          h1.text-center Temperance
+          hr
+          p.lead.text-center
+            small: em.text-muted Eat not to dullness; drink not to elevation.
+      tr
+        th.text-center(style='padding:0')
+          a.btn(
+            href='#prev'
+            style='padding:0; margin-top: -20px;')
+            i.glyphicon.glyphicon-chevron-left
+          | &nbsp;
+          a.btn(
+            href='#next'
+            style='padding:0; margin-top: -20px;')
+            i.glyphicon.glyphicon-chevron-right
+
+        for weekday in weekdays
+          th.text-center {{ weekday.letter }}
+    tbody
+      for virtue in virtues
+        tr
+          td.text-center
+            span.popper(
+              data-placement='right'
+              title='{{ virtue.name }}'
+              data-content='{{ virtue.description }}')
+              | {{ virtue.name.0 }}
+          for weekday in weekdays
+            td.checkbox.text-center(
+              data-weekday='{{ weekday.letter }}'
+              data-virtue='{{ virtue.name }}'
+              )
+
+
+
+block js
+  script(src='/media/js/app.js')
+
