@@ -3,13 +3,14 @@
   var displayCurrentWeek, row_nums;
 
   $(document).ready(function() {
+    var nextWeek, prevWeek;
     window.week_idx = window.weeks.length - 1;
     displayCurrentWeek();
     $('.ttip').tooltip({
       'html': true
     });
     $('.popper').popover();
-    return $('.checkbox').click(function() {
+    $('.checkbox').click(function() {
       var current_week, day, value, virtue, week_start_date;
       $(this).toggleClass('checked');
       virtue = $(this).data('virtue').toLowerCase();
@@ -31,6 +32,25 @@
         return console.log(data);
       });
     });
+    prevWeek = function() {
+      if (window.week_idx <= 0) {
+        return;
+      }
+      console.log("HELLO", window.week_idx);
+      window.week_idx = window.week_idx - 1;
+      displayCurrentWeek();
+      return false;
+    };
+    nextWeek = function() {
+      if (window.week_idx >= weeks.length - 1) {
+        return;
+      }
+      window.week_idx = window.week_idx + 1;
+      displayCurrentWeek();
+      return false;
+    };
+    $('.next_btn').click(nextWeek);
+    return $('.prev_btn').click(prevWeek);
   });
 
   row_nums = {
@@ -50,34 +70,33 @@
   };
 
   displayCurrentWeek = function() {
-    var current_week, day, day_idx, status, virtue, _i, _len, _ref, _results;
+    var current_week, day, day_idx, status, virtue, _i, _len, _ref;
     current_week = weeks[week_idx];
     $('.checkbox').removeClass('checked').html('');
     console.log(current_week);
     _ref = current_week['days'];
-    _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       day = _ref[_i];
-      _results.push((function() {
-        var _results1;
-        _results1 = [];
-        for (virtue in day) {
-          status = day[virtue];
-          if (virtue === 'date') {
-            continue;
-          }
-          if (status === 1) {
-            day_idx = new Date(day['date'] + " 12:00").getDay() + 2;
-            console.log(day_idx, row_nums[virtue]);
-            _results1.push($("table tr:nth-child(" + row_nums[virtue] + ") td:nth-child(" + day_idx + ")").addClass('checked').html('•'));
-          } else {
-            _results1.push(void 0);
-          }
+      for (virtue in day) {
+        status = day[virtue];
+        if (virtue === 'date') {
+          continue;
         }
-        return _results1;
-      })());
+        if (status === 1) {
+          day_idx = new Date(day['date'] + " 12:00").getDay() + 2;
+          console.log(day_idx, row_nums[virtue]);
+          $("table tr:nth-child(" + row_nums[virtue] + ") td:nth-child(" + day_idx + ")").addClass('checked').html('•');
+        }
+      }
     }
-    return _results;
+    $('.prev_btn').show();
+    $('.next_btn').show();
+    if (week_idx === 0) {
+      $('.prev_btn').hide();
+    }
+    if (week_idx === weeks.length - 1) {
+      return $('.next_btn').hide();
+    }
   };
 
   window.padDigits = function(number, digits) {

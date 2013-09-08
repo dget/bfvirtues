@@ -30,6 +30,26 @@ $(document).ready ->
       (data) ->
         console.log data
 
+  prevWeek = ->
+    if window.week_idx <= 0
+      return
+
+    console.log "HELLO", window.week_idx
+    window.week_idx = window.week_idx - 1
+    displayCurrentWeek()
+    false
+
+  nextWeek = ->
+    if window.week_idx >= weeks.length - 1
+      return
+
+    window.week_idx = window.week_idx + 1
+    displayCurrentWeek()
+    false
+
+  $('.next_btn').click nextWeek
+  $('.prev_btn').click prevWeek
+
 row_nums = {
   'temperance': 1,
   'silence': 2,
@@ -60,6 +80,15 @@ displayCurrentWeek = ->
         day_idx = new Date(day['date'] + " 12:00").getDay() + 2 # Handle indexing, extra one
         console.log day_idx, row_nums[virtue]
         $("table tr:nth-child(#{row_nums[virtue]}) td:nth-child(#{day_idx})").addClass('checked').html('•')
+
+  $('.prev_btn').show()
+  $('.next_btn').show()
+  if week_idx == 0
+    $('.prev_btn').hide()
+
+  if week_idx == weeks.length - 1
+    $('.next_btn').hide()
+
         
 window.padDigits = (number, digits) ->
   Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number
