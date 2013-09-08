@@ -10,15 +10,21 @@ $(document).ready ->
   $('.checkbox').click ->
     $(this).toggleClass('checked')
 
+    virtue = $(this).data('virtue').toLowerCase()
     value = 1
-    day = "05092013"
+    current_week = weeks[week_idx]
+    week_start_date = new Date(current_week['start_date'] + " 12:00")
+    week_start_date.setDate(week_start_date.getDate() + $(this).data('weekday'))
+    day = padDigits(week_start_date.getDate(), 2) + padDigits(week_start_date.getMonth() + 1, 2) + week_start_date.getFullYear()
     if $(this).html() == ''
       $(this).html('•')
     else
       $(this).html('')
+      value = 0
+
     $.post '/update_virtue/' + day + "/", 
       {
-        virtue: 'silence',
+        virtue: virtue,
         value: value
       },
       (data) ->
@@ -55,3 +61,5 @@ displayCurrentWeek = ->
         console.log day_idx, row_nums[virtue]
         $("table tr:nth-child(#{row_nums[virtue]}) td:nth-child(#{day_idx})").addClass('checked').html('•')
         
+window.padDigits = (number, digits) ->
+  Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number

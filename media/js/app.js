@@ -10,17 +10,22 @@
     });
     $('.popper').popover();
     return $('.checkbox').click(function() {
-      var day, value;
+      var current_week, day, value, virtue, week_start_date;
       $(this).toggleClass('checked');
+      virtue = $(this).data('virtue').toLowerCase();
       value = 1;
-      day = "05092013";
+      current_week = weeks[week_idx];
+      week_start_date = new Date(current_week['start_date'] + " 12:00");
+      week_start_date.setDate(week_start_date.getDate() + $(this).data('weekday'));
+      day = padDigits(week_start_date.getDate(), 2) + padDigits(week_start_date.getMonth() + 1, 2) + week_start_date.getFullYear();
       if ($(this).html() === '') {
         $(this).html('•');
       } else {
         $(this).html('');
+        value = 0;
       }
       return $.post('/update_virtue/' + day + "/", {
-        virtue: 'silence',
+        virtue: virtue,
         value: value
       }, function(data) {
         return console.log(data);
@@ -73,6 +78,10 @@
       })());
     }
     return _results;
+  };
+
+  window.padDigits = function(number, digits) {
+    return Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number;
   };
 
 }).call(this);

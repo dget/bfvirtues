@@ -22,7 +22,7 @@ def index(request):
     days = list(get_user_days(user))
     days.sort(key=lambda day: day.date)
 
-    days_since_last_sunday = user.date_joined.weekday() + 1
+    days_since_last_sunday = user.date_joined.weekday() + 2
     last_sunday_date = (user.date_joined - datetime.timedelta(days=days_since_last_sunday)).date()
 
     weeks = []
@@ -61,13 +61,13 @@ def index(request):
       'now': now,
       'weeks': json.dumps(weeks),
       'weekdays': [
-        {'letter': 'S'},
-        {'letter': 'M'},
-        {'letter': 'T'},
-        {'letter': 'W'},
-        {'letter': 'R'},
-        {'letter': 'F'},
-        {'letter': 'S'},
+        {'letter': 'S', 'number': 0},
+        {'letter': 'M', 'number': 1},
+        {'letter': 'T', 'number': 2},
+        {'letter': 'W', 'number': 3},
+        {'letter': 'R', 'number': 4},
+        {'letter': 'F', 'number': 5},
+        {'letter': 'S', 'number': 6},
       ],
       'virtues': [
         {'name': 'Temperance', 'description': 'Eat not to dullness; drink not to elevation.'},

@@ -37,7 +37,7 @@ block content
               | {{ virtue.name.0 }}
           for weekday in weekdays
             td.checkbox.text-center(
-              data-weekday='{{ weekday.letter }}'
+              data-weekday='{{ weekday.number }}'
               data-virtue='{{ virtue.name }}'
               )
 
