@@ -53,6 +53,8 @@ def get_user_days(user):
       day = Day(user=user, date=currently_checked_date)
       day.save()
 
+      days.append(day)
+
     currently_checked_date = currently_checked_date + datetime.timedelta(days=1)
 
   return days
