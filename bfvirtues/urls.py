@@ -16,7 +16,7 @@ urlpatterns = patterns('',
 
     # Examples:
     url(r'^$', views.index),
-    url(r'^home$', views.home),
+    url(r'^home/$', views.home),
     url(r'^logged-in/$', views.logged_in),
     url(r'^update_virtue/(.*)/$', views.update_virtue)
     # url(r'^bfvirtues/', include('bfvirtues.foo.urls')),

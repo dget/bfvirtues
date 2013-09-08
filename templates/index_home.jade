@@ -11,12 +11,28 @@ block content
       span.text-muted: em To acquire the habitude of all these
       span: em &nbsp;virtues.
 
+  p.lead.text-center
+
+    a(href='#about_modal'
+      data-toggle='modal') Passage
+    | &nbsp; &bull; &nbsp;
+    a(href='#virtues_modal'
+      data-toggle='modal') Virtues
+  hr
   center
     //- hr
     a.btn.btn-lg.btn-default(href='/login/twitter/')
       span.lead(style='margin:10px;') Log in with Twitter
   hr
-  ol(style='line-height:2;')
+  center
+    p.lead About:
+    iframe(width="480"
+      height="265"
+      src="//www.youtube.com/embed/tn33WMJEits?theme=light"
+      frameborder="0"
+      allowfullscreen)
+
+  //- ol(style='line-height:2;')
     li
       span.lead Temperance.
       em.text-muted &nbsp; Eat not to dullness; drink not to elevation.
