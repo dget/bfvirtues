@@ -25,7 +25,8 @@ $(document).ready ->
     simulatedEvent = document.createEvent("MouseEvent")
     simulatedEvent.initMouseEvent type, true, true, window, 1, first.screenX, first.screenY, first.clientX, first.clientY, false, false, false, false, 0, null #left
     first.target.dispatchEvent simulatedEvent
-    event.preventDefault()
+    # event.preventDefault()
+
   document.addEventListener("touchstart", touchHandler, true)
   document.addEventListener("touchmove", touchHandler, true)
   document.addEventListener("touchend", touchHandler, true)
