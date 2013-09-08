@@ -1,9 +1,11 @@
+$(document).ready -> 
+  $('.ttip').tooltip
+      'html': true,
 
-$('.ttip').tooltip
-    'html': true,
+  $('.popper').popover()
 
-$('.popper').popover()
+  $('.checkbox').click ->
+    $(this).addClass('checked')
+    $(this).html('•')
 
-$('.checkbox').click ->
-  $(this).addClass('checked')
-  $(this).html('•')
+  

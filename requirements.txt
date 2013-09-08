@@ -1,3 +1,4 @@
+bson
 django==1.5
 South
 requests

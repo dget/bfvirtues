@@ -1,6 +1,7 @@
 # Create your views here.
 
 import datetime
+import json
 from dateutil.rrule import rrule, DAILY
 
 from django.http import HttpResponse, HttpResponseRedirect
@@ -17,11 +18,47 @@ def index(request):
 
     now = datetime.datetime.now()
 
-    days = get_user_days(user)
+    days = list(get_user_days(user))
+    days.sort(key=lambda day: day.date)
+
+    days_since_last_sunday = user.date_joined.weekday() + 1
+    last_sunday_date = (user.date_joined - datetime.timedelta(days=days_since_last_sunday)).date()
+
+    weeks = []
+    for day in days:
+      if day.date <= last_sunday_date:
+        continue
+      if len(weeks) == 0 or len(weeks[-1]['days']) == 7:
+        week = {
+          'start_date': str(day.date),
+          'virtue': 'T',
+          'days': []
+        }
+        weeks.append(week)
+
+      week = weeks[-1]
+      day_dict = {
+          'date': str(day.date),
+          'temperance': day.temperance,
+          'silence': day.silence,
+          'order': day.order,
+          'resolution': day.resolution,
+          'frugality': day.frugality,
+          'industry': day.industry,
+          'sincerity': day.sincerity,
+          'justice': day.justice,
+          'moderation': day.moderation,
+          'cleanliness': day.cleanliness,
+          'tranquility': day.tranquillity,
+          'chastity': day.chastity,
+          'humility': day.humility
+      }
+      week['days'].append(day_dict)
 
     context = {
       'user': user,
       'now': now,
+      'weeks': json.dumps(weeks),
       'weekdays': [
         {'letter': 'S'},
         {'letter': 'M'},
@@ -61,7 +98,7 @@ def logged_in(request):
 def get_user_days(user):
   # Get all the days between today and 10 days before
   # user signed up
-  days = user.days.all()
+  days = list(user.days.all())
 
   if not days:
     used_dates = []

@@ -44,5 +44,8 @@ block content
 
 
 block js
+  {% autoescape off %}
+  script.
+    weeks = {{ weeks }};
+  {% endautoescape %}
   script(src='/media/js/app.js')
-
