@@ -1,9 +1,10 @@
 extends base
 
 block content
-  br
-  br
-  br
+  div
+    .pull-right.text-muted(style='padding: 20px;')
+      {{ user }}
+
   table.table.table-bordered
     thead
       tr
@@ -48,6 +49,6 @@ block js
   script.
     weeks = {{ weeks }};
     week_idx = -1;
-  
+
   {% endautoescape %}
   script(src='/media/js/app.js')
