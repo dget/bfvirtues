@@ -4,8 +4,6 @@
 
   $(document).ready(function() {
     var nextWeek, prevWeek, touchHandler;
-    $('td').css('cursor', 'pointer');
-    $('th').css('cursor', 'pointer');
     touchHandler = function(event) {
       var first, simulatedEvent, touches, type;
       touches = event.changedTouches;
@@ -37,7 +35,9 @@
     $('.ttip').tooltip({
       'html': true
     });
-    $('.popper').popover();
+    $('.popper').popover({
+      trigger: 'hover'
+    });
     $('.checkbox').click(function() {
       var current_week, day, value, virtue, week_start_date;
       $(this).toggleClass('checked');
@@ -113,7 +113,7 @@
         if (status === 1) {
           day_idx = new Date(day['date'] + " 12:00").getDay() + 2;
           console.log(day_idx, row_nums[virtue]);
-          $("table tr:nth-child(" + row_nums[virtue] + ") td:nth-child(" + day_idx + ")").addClass('checked').html('•');
+          $("table tr:nth-child(" + row_nums[virtue] + ") td:nth-child(" + day_idx + ") a").addClass('checked').html('•');
         }
       }
     }

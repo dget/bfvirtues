@@ -1,8 +1,8 @@
 $(document).ready ->
 
   # maybe fix ios click?  http://stackoverflow.com/a/15096054/1048433
-  $('td').css('cursor','pointer')
-  $('th').css('cursor','pointer')
+  # $('td').css('cursor','pointer')
+  # $('th').css('cursor','pointer')
 
   # also maybe fix ios click?  http://stackoverflow.com/a/3714129/1048433
   touchHandler = (event) ->
@@ -38,7 +38,7 @@ $(document).ready ->
   $('.ttip').tooltip
       'html': true,
 
-  $('.popper').popover()
+  $('.popper').popover({trigger: 'hover'})
 
   $('.checkbox').click ->
     # e.preventDefault() # maybe fix ios click?  http://stackoverflow.com/a/15096054/1048433
@@ -114,7 +114,7 @@ displayCurrentWeek = ->
       if status == 1
         day_idx = new Date(day['date'] + " 12:00").getDay() + 2 # Handle indexing, extra one
         console.log day_idx, row_nums[virtue]
-        $("table tr:nth-child(#{row_nums[virtue]}) td:nth-child(#{day_idx})").addClass('checked').html('•')
+        $("table tr:nth-child(#{row_nums[virtue]}) td:nth-child(#{day_idx}) a").addClass('checked').html('•')
 
   $('.prev_btn').show()
   $('.next_btn').show()

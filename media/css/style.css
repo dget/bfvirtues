@@ -2,6 +2,31 @@
   font-size: 24pt;
   line-height: 17pt;
 }
+.checkbox-parent {
+  padding: 0px 0px 0px 0px !important;
+}
+.clickme {
+  padding: 8px 8px 8px 8px !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+td {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+a.clickme {
+  display: block;
+  cursor: pointer;
+  height: 39px;
+  color: black;
+  text-decoration: none;
+}
+a.clickmehover {
+  text-decoration: none;
+}
 body,
 h1,
 h2,
