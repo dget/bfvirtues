@@ -9,10 +9,10 @@ block content
     thead
       tr
         td(colspan=8)
-          h1.text-center Temperance
+          h1.text-center {{ current_virtue.name }}
           hr
           p.lead.text-center
-            small: em.text-muted Eat not to dullness; drink not to elevation.
+            small: em.text-muted {{ current_virtue.description }}
       tr
         th.text-center(style='padding:0')
           a.btn.prev_btn(
