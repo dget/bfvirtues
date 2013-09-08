@@ -4,4 +4,4 @@ requests
 django-social-auth
 pyjade
 python-dateutil
-MySQL-python
+MySQL-python==1.2.3
