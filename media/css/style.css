@@ -16,8 +16,21 @@ span,
 a {
   font-family: 'EB Garamond', serif;
 }
+.modal-body p {
+  font-size: 120%;
+}
 em {
   font-family: 'Libre Baskerville', 'EB Garamond', serif;
+}
+.bfrank-img-wrapper img {
+  height: 50%;
+  left: 10%;
+  position: absolute;
+  z-index: -1000;
+  -webkit-mask-image: -webkit-gradient(radial, 50% 10%, 200, 90% 10%, 50, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.1)));
+}
+#wrap {
+  background: rgba(252, 244, 220, 0.11);
 }
 /* Sticky footer styles
 -------------------------------------------------- */

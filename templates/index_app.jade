@@ -26,7 +26,9 @@ block content
             i.glyphicon.glyphicon-chevron-right
 
         for weekday in weekdays
-          th.text-center {{ weekday.letter }}
+          th.text-center(
+            title='{{  }}'
+            ) {{ weekday.letter }}
     tbody
       for virtue in virtues
         tr

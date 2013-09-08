@@ -4,6 +4,8 @@
 
   $(document).ready(function() {
     var nextWeek, prevWeek;
+    $('td').css('cursor', 'pointer');
+    $('th').css('cursor', 'pointer');
     window.week_idx = window.weeks.length - 1;
     displayCurrentWeek();
     $('.ttip').tooltip({
@@ -12,6 +14,7 @@
     $('.popper').popover();
     $('.checkbox').click(function() {
       var current_week, day, value, virtue, week_start_date;
+      e.preventDefault();
       $(this).toggleClass('checked');
       virtue = $(this).data('virtue').toLowerCase();
       value = 1;

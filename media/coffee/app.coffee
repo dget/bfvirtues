@@ -1,4 +1,9 @@
-$(document).ready -> 
+$(document).ready ->
+
+  # maybe fix ios click?  http://stackoverflow.com/a/15096054/1048433
+  $('td').css('cursor','pointer')
+  $('th').css('cursor','pointer')
+
   window.week_idx = window.weeks.length - 1
   displayCurrentWeek()
 
@@ -8,6 +13,8 @@ $(document).ready ->
   $('.popper').popover()
 
   $('.checkbox').click ->
+    e.preventDefault() # maybe fix ios click?  http://stackoverflow.com/a/15096054/1048433
+
     $(this).toggleClass('checked')
 
     virtue = $(this).data('virtue').toLowerCase()
@@ -22,7 +29,7 @@ $(document).ready ->
       $(this).html('')
       value = 0
 
-    $.post '/update_virtue/' + day + "/", 
+    $.post '/update_virtue/' + day + "/",
       {
         virtue: virtue,
         value: value
@@ -75,7 +82,7 @@ displayCurrentWeek = ->
     for virtue, status of day
       if virtue == 'date'
         continue
-      
+
       if status == 1
         day_idx = new Date(day['date'] + " 12:00").getDay() + 2 # Handle indexing, extra one
         console.log day_idx, row_nums[virtue]
@@ -89,6 +96,6 @@ displayCurrentWeek = ->
   if week_idx == weeks.length - 1
     $('.next_btn').hide()
 
-        
+
 window.padDigits = (number, digits) ->
   Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number

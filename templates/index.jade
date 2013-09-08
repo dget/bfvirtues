@@ -1,3 +1,4 @@
+extends base
 
 block styles
   | {{ block.super }}
@@ -5,8 +6,56 @@ block styles
 
 block content
   .page-header
-    h1 BF Virtues
-  p.lead.
-    This is some information and stuff
-  p This is less important information.
-  a(href='/login/twitter/') Log in with Twitter
+    h1 Benjamin Franklin's 13
+    em.lead(style='line-height:2;')
+      span.text-muted: em To acquire the habitude of all these
+      span: em &nbsp;virtues.
+
+  center
+    //- hr
+    a.btn.btn-lg.btn-default(href='/login/twitter/')
+      span.lead(style='margin:10px;') Log in with Twitter
+  hr
+  ol(style='line-height:2;')
+    li
+      span.lead Temperance.
+      em.text-muted &nbsp; Eat not to dullness; drink not to elevation.
+    li
+      span.lead Silence.
+      em.text-muted &nbsp; Speak not but what may benefit others or yourself; avoid trifling conversation.
+    li
+      span.lead Order.
+      em.text-muted &nbsp; Let all your things have their places; let each part of your business have its time.
+    li
+      span.lead Resolution.
+      em.text-muted &nbsp; Resolve to perform what you ought; perform without fail what you resolve.
+    li
+      span.lead Frugality.
+      em.text-muted &nbsp; Make no expense but to do good to others or yourself; i.e., waste nothing.
+    li
+      span.lead Industry.
+      em.text-muted &nbsp; Lose no time; be always employ'd in something useful; cut off all unnecessary actions.
+    li
+      span.lead Sincerity.
+      em.text-muted &nbsp; Use no hurtful deceit; think innocently and justly, and, if you speak, speak accordingly.
+    li
+      span.lead Justice.
+      em.text-muted &nbsp; Wrong none by doing injuries, or omitting the benefits that are your duty.
+    li
+      span.lead Moderation.
+      em.text-muted &nbsp; Avoid extremes; forbear resenting injuries so much as you think they deserve.
+    li
+      span.lead Cleanliness.
+      em.text-muted &nbsp; Tolerate no uncleanliness in body, cloaths, or habitation.
+    li
+      span.lead Tranquillity.
+      em.text-muted &nbsp; Be not disturbed at trifles, or at accidents common or unavoidable.
+    li
+      span.lead Chastity.
+      em.text-muted &nbsp; Rarely use venery but for health or offspring, never to dullness, weakness, or the injury of your own or another's peace or reputation.
+    li
+      span.lead Humility.
+      em.text-muted &nbsp; Imitate Jesus and Socrates.
+
+  br
+  br
