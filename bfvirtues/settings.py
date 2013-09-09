@@ -15,12 +15,12 @@ ADMINS = (
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.twitter.TwitterBackend',
-    # 'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.facebook.FacebookBackend',
 )
 TWITTER_CONSUMER_KEY         = 'W6tFge0578DQCofoVbhxA'
 TWITTER_CONSUMER_SECRET      = 'JYzV7NamRc2zmu7oNEwvxmHOCI5H9cPJppWwmVp4MQ'
-# FACEBOOK_APP_ID              = ''
-# FACEBOOK_API_SECRET          = ''
+FACEBOOK_APP_ID              = '201273303379507'
+FACEBOOK_API_SECRET          = 'daa17a300704ae34de7ac1db80f39123'
 LOGIN_URL          = '/login-form/'
 LOGIN_REDIRECT_URL = '/logged-in/'
 LOGIN_ERROR_URL    = '/login-error/'
