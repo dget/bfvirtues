@@ -1,3 +1,6 @@
+window.onerror = (message, url, linenumber) ->
+  alert "JavaScript error: " + message + " on line " + linenumber + " for " + url
+
 $(document).ready ->
 
   # maybe fix ios click?  http://stackoverflow.com/a/15096054/1048433
