@@ -119,7 +119,7 @@ def update_virtue(request, date):
   value = request.POST['value']
 
   real_date = datetime.datetime.strptime(date, "%d%m%Y").date()
-  day = Day.objects.get(user=user, date=real_date)
+  day, __ = Day.objects.get_or_create(user=user, date=real_date)
 
   setattr(day, virtue, value)
   day.save()
