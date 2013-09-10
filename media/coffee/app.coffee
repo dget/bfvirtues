@@ -117,7 +117,11 @@ displayCurrentWeek = ->
       if status == 1
         day_idx = new Date(day['date'] + " 12:00").getDay() + 2 # Handle indexing, extra one
         console.log day_idx, row_nums[virtue]
-        $("table tr:nth-child(#{row_nums[virtue]}) td:nth-child(#{day_idx}) a").addClass('checked').html('•')
+        tr = $($("table").find('tr')[row_nums[virtue] + 1])
+        td = $(tr.find('td')[day_idx - 1])
+        a = $(td.find('a'))
+        a.addClass('checked')
+        a.html('•')
 
   $('.prev_btn').show()
   $('.next_btn').show()

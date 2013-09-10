@@ -102,7 +102,7 @@
   };
 
   displayCurrentWeek = function() {
-    var current_week, day, day_idx, status, virtue, _i, _len, _ref;
+    var a, current_week, day, day_idx, status, td, tr, virtue, _i, _len, _ref;
     current_week = weeks[week_idx];
     $('.checkbox').removeClass('checked').html('');
     console.log(current_week);
@@ -117,7 +117,11 @@
         if (status === 1) {
           day_idx = new Date(day['date'] + " 12:00").getDay() + 2;
           console.log(day_idx, row_nums[virtue]);
-          $("table tr:nth-child(" + row_nums[virtue] + ") td:nth-child(" + day_idx + ") a").addClass('checked').html('•');
+          tr = $($("table").find('tr')[row_nums[virtue] + 1]);
+          td = $(tr.find('td')[day_idx - 1]);
+          a = $(td.find('a'));
+          a.addClass('checked');
+          a.html('•');
         }
       }
     }
